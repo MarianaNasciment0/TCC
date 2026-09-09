@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.FormularioPage"
+             Title="Acesso ao Sistema">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="15">
+
+            <!-- Título dinâmico do perfil -->
+            <Label x:Name="lblTituloPerfil"
+                   Text="Perfil"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#512BD4" />
+
+            <!-- Seletor de Ação (Login ou Cadastro) -->
+            <Picker x:Name="pickerAcao" 
+                    Title="Selecione a ação" 
+                    SelectedIndexChanged="OnAcaoChanged" 
+                    FontSize="16">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Entrar (Login)</x:String>
+                        <x:String>Fazer Cadastro / Registro</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <BoxView HeightRequest="1" Margin="0,5" Color="LightGray" />
+
+            <!-- ================= LOTE DE LOGIN (Comum a todos) ================= -->
+            <VerticalStackLayout x:Name="layoutLogin" Spacing="12" IsVisible="True">
+                <Label Text="Informe suas credenciais para entrar" FontAttributes="Italic" TextColor="Gray"/>
+                <Entry x:Name="txtEmail" Placeholder="E-mail de acesso" Keyboard="Email" FontSize="16" />
+                <Entry x:Name="txtSenha" Placeholder="Senha" IsPassword="True" FontSize="16" />
+            </VerticalStackLayout>
+
+            <!-- ================= FORMULÁRIO: ALUNO / ATLETA ================= -->
+            <VerticalStackLayout x:Name="layoutCadastroAluno" Spacing="12" IsVisible="False">
+                <Label Text="Cadastro de Aluno / Atleta" FontAttributes="Italic" TextColor="Gray"/>
+                <Entry x:Name="txtNomeAluno" Placeholder="Nome Completo" FontSize="16" />
+                <Entry x:Name="txtCpfAluno" Placeholder="CPF" Keyboard="Numeric" FontSize="16" />
+                <Entry x:Name="txtAlturaAluno" Placeholder="Altura (ex: 1.75)" Keyboard="Numeric" FontSize="16" />
+                <Entry x:Name="txtPesoAluno" Placeholder="Peso em kg (ex: 70.5)" Keyboard="Numeric" FontSize="16" />
+                <Entry x:Name="txtObjetivoAluno" Placeholder="Objetivo (ex: Hipertrofia, Emagrecimento)" FontSize="16" />
+
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Data de Nascimento:" FontSize="14" TextColor="Gray" FontAttributes="Bold" />
+                    <DatePicker x:Name="dateNascimentoAluno" FontSize="16" />
+                </VerticalStackLayout>
+
+                <Entry x:Name="txtEmailAluno" Placeholder="E-mail" Keyboard="Email" FontSize="16" />
+                <Entry x:Name="txtSenhaAluno" Placeholder="Senha" IsPassword="True" FontSize="16" />
+            </VerticalStackLayout>
+
+            <!-- ================= FORMULÁRIO: PERSONAL TRAINER ================= -->
+            <VerticalStackLayout x:Name="layoutCadastroPersonal" Spacing="12" IsVisible="False">
+                <Label Text="Cadastro de Personal Trainer" FontAttributes="Italic" TextColor="Gray"/>
+                <Entry x:Name="txtNomePersonal" Placeholder="Nome Completo" FontSize="16" />
+                <Entry x:Name="txtCrefPersonal" Placeholder="CREF (Registro Profissional)" FontSize="16" />
+                <Entry x:Name="txtEspecialidadesPersonal" Placeholder="Especialidades (ex: Musculação, Funcional)" FontSize="16" />
+                <Entry x:Name="txtEmailPersonal" Placeholder="E-mail de acesso" Keyboard="Email" FontSize="16" />
+                <Entry x:Name="txtSenhaPersonal" Placeholder="Senha de acesso" IsPassword="True" FontSize="16" />
+            </VerticalStackLayout>
+
+            <!-- ================= FORMULÁRIO: ACADEMIA E DESEMPENHO ================= -->
+            <VerticalStackLayout x:Name="layoutCadastroAcademia" Spacing="12" IsVisible="False">
+                <Label Text="Cadastro da Empresa / Academia e Metas" FontAttributes="Italic" TextColor="Gray"/>
+                <Entry x:Name="txtNomeEmpresa" Placeholder="Nome da Empresa / Academia" FontSize="16" />
+                <Entry x:Name="txtCnpjEmpresa" Placeholder="CNPJ da Empresa" Keyboard="Numeric" FontSize="16" />
+                <Entry x:Name="txtFuncoesEmpresa" Placeholder="Serviços e Funções oferecidas" FontSize="16" />
+                <Entry x:Name="txtEmailEmpresa" Placeholder="E-mail de acesso" Keyboard="Email" FontSize="16" />
+                <Entry x:Name="txtSenhaEmpresa" Placeholder="Senha de acesso" IsPassword="True" FontSize="16" />
+            </VerticalStackLayout>
+
+            <!-- Botão de Ação -->
+            <Button x:Name="btnSalvar"
+                    Text="Confirmar"
+                    Clicked="OnSalvarClicked"
+                    FontSize="18"
+                    BackgroundColor="#512BD4"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Margin="0,15,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.MainPage"
+             Title="Início - TCC">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+
+            <Label
+                Text="🚀 Bem-vindo ao Sistema"
+                FontSize="26"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="#512BD4" />
+
+            <Label
+                Text="Selecione o seu perfil de acesso para continuar:"
+                FontSize="16"
+                HorizontalOptions="Center"
+                TextColor="Gray" />
+
+            <BoxView HeightRequest="1" Margin="0,10" Color="LightGray" />
+
+            <!-- Opções de Perfis do Projeto -->
+            <Button
+                Text="🏋️‍♂️ Personal Trainer"
+                Clicked="OnPersonalClicked"
+                FontSize="18"
+                BackgroundColor="#512BD4"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="55" />
+
+            <Button
+                Text="🎓 Aluno / Atleta"
+                Clicked="OnAlunoClicked"
+                FontSize="18"
+                BackgroundColor="#2B0B98"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="55" />
+
+            <Button
+                Text="📊 Academia / Desempenho"
+                Clicked="OnDesempenhoClicked"
+                FontSize="18"
+                BackgroundColor="#4885ED"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="55" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

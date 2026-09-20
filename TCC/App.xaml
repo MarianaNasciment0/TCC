@@ -1,17 +1,15 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:TCC"
              x:Class="TCC.App">
     <Application.Resources>
         <ResourceDictionary>
-
-            <!--
-                For information about styling .NET MAUI pages
-                please refer to the documentation:
-                https://go.microsoft.com/fwlink/?linkid=2282329
-            -->
-
+            <!-- Cores Globais do App de Academia -->
+            <Color x:Key="PrimaryGreen">#00E676</Color>
+            <Color x:Key="DarkBackground">#121212</Color>
+            <Color x:Key="CardBackground">#1E1E1E</Color>
+            <Color x:Key="TextSecondary">#9E9E9E</Color>
+            <Color x:Key="TextPrimary">#FFFFFF</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

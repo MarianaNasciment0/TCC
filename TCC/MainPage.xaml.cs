@@ -7,48 +7,28 @@ public partial class MainPage : ContentPage
         InitializeComponent();
     }
 
+    private async void OnAlunoClicked(object? sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new FormularioPage("Aluno / Atleta"));
+    }
+
     private async void OnPersonalClicked(object? sender, EventArgs e)
     {
-        if (sender is Button button)
-        {
-            await button.ScaleToAsync(0.95, 50);
-            await button.ScaleToAsync(1, 50);
-        }
-
         await Navigation.PushAsync(new FormularioPage("Personal Trainer"));
     }
 
-    private async void OnAlunoClicked(object? sender, EventArgs e)
+    private async void OnNutricionistaClicked(object? sender, EventArgs e)
     {
-        if (sender is Button button)
-        {
-            await button.ScaleToAsync(0.95, 50);
-            await button.ScaleToAsync(1, 50);
-        }
-
-        await Navigation.PushAsync(new FormularioPage("Aluno / Atleta"));
+        await Navigation.PushAsync(new FormularioPage("Nutricionista"));
     }
 
     private async void OnAcademiaClicked(object? sender, EventArgs e)
     {
-        if (sender is Button button)
-        {
-            await button.ScaleToAsync(0.95, 50);
-            await button.ScaleToAsync(1, 50);
-        }
-
-        // Passando exatamente a palavra "Academia" para o formulário reconhecer
         await Navigation.PushAsync(new FormularioPage("Academia"));
     }
 
-    private async void OnDesempenhoClicked(object? sender, EventArgs e)
+    private async void OnAdminClicked(object? sender, EventArgs e)
     {
-        if (sender is Button button)
-        {
-            await button.ScaleToAsync(0.95, 50);
-            await button.ScaleToAsync(1, 50);
-        }
-
-        await Navigation.PushAsync(new FormularioPage("Desempenho e Metas"));
+        await Navigation.PushAsync(new FormularioPage("Administrador"));
     }
 }

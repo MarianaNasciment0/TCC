@@ -7,37 +7,50 @@ namespace TCC.Helpers
     {
         readonly SQLiteAsyncConnection _conn;
 
-        public SQLiteDatabaseHelper(string path)
+        public SQLiteDatabaseHelper(string dbPath)
         {
-            _conn = new SQLiteAsyncConnection(path);
+            _conn = new SQLiteAsyncConnection(dbPath);
+            _conn.CreateTableAsync<UsuarioModel>().Wait();
             _conn.CreateTableAsync<Produto>().Wait();
         }
 
-        public Task<int> Insert(Produto p)
+        public Task<int> InserirUsuarioAsync(UsuarioModel usuario)
         {
-            return _conn.InsertAsync(p);
+            return _conn.InsertAsync(usuario);
         }
 
-        public Task<int> Update(Produto p)
+        // Método de atualização (Semana 4)
+        public Task<int> AtualizarUsuarioAsync(UsuarioModel usuario)
         {
-            string sql = "UPDATE Produto SET Descricao=?, Quantidade=?, Preco=? WHERE Id=?";
-            return _conn.ExecuteAsync(sql, p.Descricao, p.Quantidade, p.Preco, p.Id);
+            return _conn.UpdateAsync(usuario);
         }
 
-        public Task<int> Delete(int id)
+        // Método de exclusão (Semana 4)
+        public Task<int> DeletarUsuarioAsync(UsuarioModel usuario)
         {
-            return _conn.Table<Produto>().DeleteAsync(i => i.Id == id);
+            return _conn.DeleteAsync(usuario);
         }
 
-        public Task<List<Produto>> GetAll()
+        public Task<UsuarioModel> ObterPorEmailAsync(string email)
         {
-            return _conn.Table<Produto>().ToListAsync();
+            return _conn.Table<UsuarioModel>().Where(u => u.Email == email).FirstOrDefaultAsync();
         }
 
-        public Task<List<Produto>> Search(string q)
+        public Task<UsuarioModel> ObterPorDocumentoAsync(string documento)
         {
-            string sql = "SELECT * FROM Produto WHERE Descricao LIKE ?";
-            return _conn.QueryAsync<Produto>(sql, "%" + q + "%");
+            return _conn.Table<UsuarioModel>().Where(u => u.Documento == documento).FirstOrDefaultAsync();
+        }
+
+        public Task<List<UsuarioModel>> ListarUsuariosAsync()
+        {
+            return _conn.Table<UsuarioModel>().ToListAsync();
+        }
+
+        public Task<List<UsuarioModel>> ObterPorTipoPerfilAsync(string tipoPerfil)
+        {
+            return _conn.Table<UsuarioModel>()
+                        .Where(u => u.TipoPerfil.ToLower().Contains(tipoPerfil.ToLower()))
+                        .ToListAsync();
         }
     }
 }

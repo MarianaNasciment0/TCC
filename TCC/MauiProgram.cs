@@ -1,27 +1,29 @@
 ﻿using Microsoft.Extensions.Logging;
+using TCC.Helpers;
 
-namespace TCC
+namespace TCC;
+
+public static class MauiProgram
 {
-    public static class MauiProgram
+    public static MauiApp CreateMauiApp()
     {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                });
-
-            builder.Services.AddMauiBlazorWebView();
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSans Regular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSans Semibold");
+            });  
 
 #if DEBUG
-    		builder.Services.AddBlazorWebViewDeveloperTools();
-    		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
-        }
+        // Configuração do caminho do banco de dados SQLite para a Semana 2
+        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "tcc_database.db3");
+        builder.Services.AddSingleton<SQLiteDatabaseHelper>(s => new SQLiteDatabaseHelper(dbPath));
+
+        return builder.Build();
     }
 }

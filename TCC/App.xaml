@@ -4,7 +4,6 @@
              x:Class="TCC.App">
     <Application.Resources>
         <ResourceDictionary>
-            <!-- Cores Globais do App de Academia -->
             <Color x:Key="PrimaryGreen">#00E676</Color>
             <Color x:Key="DarkBackground">#121212</Color>
             <Color x:Key="CardBackground">#1E1E1E</Color>

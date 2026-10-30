@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.FormularioMedicoPage"
+             Title="Formulário Médico"
+             BackgroundColor="#121212">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+            <Label Text="ANAMNESE DE SAÚDE" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+            <Label Text="Formulário Médico" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+
+            <VerticalStackLayout Spacing="6">
+                <Label Text="LESÕES OU DOENÇAS CRÔNICAS" TextColor="#00E676" FontSize="11"/>
+                <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                    <Entry x:Name="txtLesoes" TextColor="White" Margin="10,2"/>
+                </Border>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="6">
+                <Label Text="USO CONTÍNUO DE MEDICAMENTOS" TextColor="#00E676" FontSize="11"/>
+                <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                    <Entry x:Name="txtMedicamentos" TextColor="White" Margin="10,2"/>
+                </Border>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="6">
+                <Label Text="CIRURGIAS RECENTES" TextColor="#00E676" FontSize="11"/>
+                <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                    <Entry x:Name="txtCirurgias" TextColor="White" Margin="10,2"/>
+                </Border>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="6">
+                <Label Text="OBSERVAÇÕES GERAIS" TextColor="#00E676" FontSize="11"/>
+                <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                    <Editor x:Name="txtObs" TextColor="White" HeightRequest="80" Margin="10,5"/>
+                </Border>
+            </VerticalStackLayout>
+
+            <Button Text="SALVAR FORMULÁRIO" Clicked="OnSalvarFormularioClicked" BackgroundColor="#00E676" TextColor="#121212" FontAttributes="Bold" CornerRadius="10"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.EditarPlanoPersonalPage"
+             Title="Gerenciar Planos e Valores"
+             BackgroundColor="#121212">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="PAINEL DO PROFISSIONAL" TextColor="#00E676" FontSize="11" FontAttributes="Bold" CharacterSpacing="1"/>
+                <Label Text="Configure Aulas Avulsas, Planos e Disponibilidade" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+            </VerticalStackLayout>
+
+            <!-- VALOR DA AULA AVULSA -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="🥊 Valor da Aula Avulsa (R$)" TextColor="#00E676" FontSize="14" FontAttributes="Bold"/>
+                    <Label Text="Quanto custa uma aula avulsa ou experimental isolada?" TextColor="#9E9E9E" FontSize="12"/>
+                    <Entry x:Name="txtValorAvulsa"
+                           Placeholder="Ex: 60.00"
+                           PlaceholderColor="#616161"
+                           TextColor="White"
+                           Keyboard="Numeric"
+                           BackgroundColor="#121212"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- ESCOLHA DA QUANTIDADE DE PLANOS SEPARADOS -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="📊 Planos / Pacotes Mensais" TextColor="#00E676" FontSize="14" FontAttributes="Bold"/>
+                    <Label Text="Quantos planos separados você deseja oferecer?" TextColor="#9E9E9E" FontSize="12"/>
+
+                    <Picker x:Name="pickerQtdPlanos"
+                            Title="Selecione a quantidade de planos"
+                            TextColor="White"
+                            TitleColor="#616161"
+                            BackgroundColor="#121212"
+                            SelectedIndexChanged="OnQtdPlanosChanged">
+                        <Picker.Items>
+                            <x:String>Nenhum plano (Apenas aula avulsa)</x:String>
+                            <x:String>1 Plano</x:String>
+                            <x:String>2 Planos</x:String>
+                            <x:String>3 Planos</x:String>
+                            <x:String>4 Planos</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- ================= PLANO 1 ================= -->
+            <Border x:Name="cardPlano1" BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15" IsVisible="False">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="⭐ PLANO 1" TextColor="#00E676" FontSize="14" FontAttributes="Bold"/>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Nome do Plano" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Entry x:Name="txtNomePlano1" Placeholder="Ex: Mensal" PlaceholderColor="#616161" TextColor="White" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Valor (R$)" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Entry x:Name="txtValorPlano1" Placeholder="Ex: 150.00" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Benefícios deste Plano" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Editor x:Name="editorBeneficiosPlano1" Placeholder="Ex: Acesso livre..." PlaceholderColor="#616161" TextColor="White" HeightRequest="50" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- ================= PLANO 2 ================= -->
+            <Border x:Name="cardPlano2" BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15" IsVisible="False">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="⭐ PLANO 2" TextColor="#00E676" FontSize="14" FontAttributes="Bold"/>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Nome do Plano" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Entry x:Name="txtNomePlano2" Placeholder="Ex: Trimestral" PlaceholderColor="#616161" TextColor="White" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Valor (R$)" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Entry x:Name="txtValorPlano2" Placeholder="Ex: 400.00" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Benefícios deste Plano" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Editor x:Name="editorBeneficiosPlano2" Placeholder="Ex: Dieta inclusa..." PlaceholderColor="#616161" TextColor="White" HeightRequest="50" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- ================= PLANO 3 ================= -->
+            <Border x:Name="cardPlano3" BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15" IsVisible="False">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="⭐ PLANO 3" TextColor="#00E676" FontSize="14" FontAttributes="Bold"/>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Nome do Plano" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Entry x:Name="txtNomePlano3" Placeholder="Ex: Semestral" PlaceholderColor="#616161" TextColor="White" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Valor (R$)" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Entry x:Name="txtValorPlano3" Placeholder="Ex: 750.00" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Benefícios deste Plano" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Editor x:Name="editorBeneficiosPlano3" Placeholder="Ex: Avaliação física..." PlaceholderColor="#616161" TextColor="White" HeightRequest="50" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- ================= PLANO 4 ================= -->
+            <Border x:Name="cardPlano4" BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15" IsVisible="False">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="⭐ PLANO 4" TextColor="#00E676" FontSize="14" FontAttributes="Bold"/>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Nome do Plano" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Entry x:Name="txtNomePlano4" Placeholder="Ex: Anual VIP" PlaceholderColor="#616161" TextColor="White" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Valor (R$)" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Entry x:Name="txtValorPlano4" Placeholder="Ex: 1200.00" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Benefícios deste Plano" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                        <Editor x:Name="editorBeneficiosPlano4" Placeholder="Ex: Suporte 24h..." PlaceholderColor="#616161" TextColor="White" HeightRequest="50" BackgroundColor="#121212"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- DISPONIBILIDADE -->
+            <VerticalStackLayout Spacing="6">
+                <Label Text="⏰ Horários e Dias de Disponibilidade" TextColor="#9E9E9E" FontSize="13" FontAttributes="Bold"/>
+                <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                    <Editor x:Name="editorDisponibilidade"
+                            Placeholder="Ex: Segunda a Sexta, das 07:00 às 11:00..."
+                            PlaceholderColor="#616161"
+                            TextColor="White"
+                            HeightRequest="70"
+                            BackgroundColor="Transparent"
+                            Margin="10,5"/>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Botão Salvar -->
+            <Button Text="Salvar Preços e Planos"
+                    Clicked="OnSalvarPlanoClicked"
+                    BackgroundColor="#00E676"
+                    TextColor="#121212"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Margin="0,10,0,20"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

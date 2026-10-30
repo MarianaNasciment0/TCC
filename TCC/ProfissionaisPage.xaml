@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.ProfissionaisPage"
+             Title="Detalhes do Profissional"
+             BackgroundColor="#121212">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 16" Padding="20">
+                <VerticalStackLayout Spacing="12">
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="👤" FontSize="32" VerticalOptions="Center"/>
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label x:Name="lblNome" Text="Nome" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+                            <Label x:Name="lblTipoPerfil" Text="Perfil" TextColor="#00E676" FontSize="13" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+
+                    <BoxView HeightRequest="1" Color="#2C2C2C" Margin="0,5"/>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label x:Name="lblEmail" Text="E-mail: " TextColor="#B0BEC5" FontSize="13"/>
+                        <Label x:Name="lblTelefone" Text="Telefone: " TextColor="#B0BEC5" FontSize="13"/>
+                        <Label x:Name="lblDocumento" Text="Registro: " TextColor="#B0BEC5" FontSize="13"/>
+                        <Label x:Name="lblEspecialidades" Text="Especialidades: " TextColor="#B0BEC5" FontSize="13"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 16" Padding="20">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="📋 PLANOS E VALORES" TextColor="#00E676" FontSize="12" FontAttributes="Bold"/>
+                    <Label x:Name="lblPlanos" Text="Nenhum plano configurado." TextColor="White" FontSize="14"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="💬 Conversar via Chat"
+                    Clicked="OnChatComProfissionalClicked"
+                    BackgroundColor="#00E676"
+                    TextColor="#121212"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    CornerRadius="12"
+                    HeightRequest="50"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

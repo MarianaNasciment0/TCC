@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.AcademiaDashboardPage"
+             Title="Painel da Academia"
+             BackgroundColor="#121212">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+
+            <!-- Card Superior -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#00E676" StrokeThickness="1" StrokeShape="RoundRectangle 16" Padding="20">
+                <VerticalStackLayout Spacing="8">
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="🏢" FontSize="28" VerticalOptions="Center"/>
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label x:Name="lblNomeAcademia" Text="Olá, Academia!" TextColor="White" FontSize="18" FontAttributes="Bold"/>
+                            <Label Text="Perfil: Academia Parceira" TextColor="#00E676" FontSize="12" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="GERENCIAMENTO E CONSULTAS" TextColor="#9E9E9E" FontSize="11" FontAttributes="Bold" CharacterSpacing="1"/>
+
+            <!-- 💬 CARD DE MENSAGENS E CHAT -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnMensagensClicked"/>
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="💬" FontSize="28" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Mensagens e Chat" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                        <Label Text="Converse com alunos e profissionais vinculados" TextColor="#9E9E9E" FontSize="12"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- 🏋️‍♂️ CARD DE PERSONAIS -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnPersonalsClicked"/>
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="🏋️‍♂️" FontSize="28" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Personal Trainers" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                        <Label Text="Gerencie os personals da academia" TextColor="#9E9E9E" FontSize="12"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- 🎓 CARD DE ALUNOS -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAlunosClicked"/>
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="🎓" FontSize="28" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Alunos" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                        <Label Text="Visualize alunos e fichas vinculadas" TextColor="#9E9E9E" FontSize="12"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Botões de Sair e Excluir Conta da Academia -->
+            <VerticalStackLayout Spacing="10" Margin="0,20,0,20">
+                <Button Text="EXCLUIR CONTA"
+                        Clicked="OnExcluirContaClicked"
+                        BackgroundColor="#3A1212"
+                        TextColor="#FF5252"
+                        FontAttributes="Bold"
+                        FontSize="13"
+                        CornerRadius="10"
+                        HeightRequest="45"/>
+
+                <Button Text="SAIR DA CONTA"
+                        Clicked="OnSairClicked"
+                        BackgroundColor="#2C2C2C"
+                        TextColor="#FF5252"
+                        FontAttributes="Bold"
+                        FontSize="13"
+                        CornerRadius="10"
+                        HeightRequest="45"/>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

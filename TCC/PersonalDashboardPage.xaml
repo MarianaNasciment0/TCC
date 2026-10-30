@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.PersonalDashboardPage"
+             Title="Painel do Personal Trainer"
+             BackgroundColor="#121212">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+
+            <!-- Card Superior com Dados do Personal -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#00E676" StrokeThickness="1" StrokeShape="RoundRectangle 16" Padding="20">
+                <VerticalStackLayout Spacing="8">
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="🏋️‍♂️" FontSize="28" VerticalOptions="Center"/>
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label x:Name="lblNomePersonal" Text="Olá, Personal!" TextColor="White" FontSize="18" FontAttributes="Bold"/>
+                            <Label Text="Perfil: Personal Trainer" TextColor="#00E676" FontSize="12" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Card de Meu Plano / Valores Editáveis -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
+                <VerticalStackLayout Spacing="10">
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="💰" FontSize="24"/>
+                        <VerticalStackLayout>
+                            <Label Text="Meus Planos e Valoração" TextColor="White" FontSize="15" FontAttributes="Bold"/>
+                            <Label Text="Gerencie quanto você cobra por aluno/consultoria" TextColor="#9E9E9E" FontSize="11"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="8">
+                        <Label Text="Valor Atual:" TextColor="#B0BEC5" FontSize="13"/>
+                        <Label x:Name="lblValorPlano" Text="R$ 0,00" TextColor="#00E676" FontSize="13" FontAttributes="Bold"/>
+                    </HorizontalStackLayout>
+
+                    <Button Text="✏️ Configurar / Editar Plano"
+                            Clicked="OnEditarPlanoClicked"
+                            BackgroundColor="#2C2C2C"
+                            TextColor="#00E676"
+                            FontAttributes="Bold"
+                            FontSize="12"
+                            CornerRadius="8"
+                            HeightRequest="40"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="GERENCIAMENTO E CONSULTAS" TextColor="#9E9E9E" FontSize="11" FontAttributes="Bold" CharacterSpacing="1"/>
+
+            <!-- Atalho: Mensagens e Chat -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnMensagensClicked"/>
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="💬" FontSize="28" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Mensagens e Chat" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                        <Label Text="Converse com alunos e outros profissionais" TextColor="#9E9E9E" FontSize="12"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Opção 1: Alunos -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAlunosClicked"/>
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="🎓" FontSize="30" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Alunos" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                        <Label Text="Visualize fichas, objetivos, altura e peso dos alunos" TextColor="#9E9E9E" FontSize="12"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Opção 2: Academias -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAcademiasClicked"/>
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="🏢" FontSize="30" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Academias" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                        <Label Text="Consulte endereços, números e unidades parceiras" TextColor="#9E9E9E" FontSize="12"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- Opção 3: Formulário Médico -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnFormularioMedicoClicked"/>
+                </Border.GestureRecognizers>
+                <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+                    <Label Text="📋" FontSize="30" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Formulário Médico" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                        <Label Text="Acesse relatórios e avaliações de saúde" TextColor="#9E9E9E" FontSize="12"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </Border>
+
+            <Button Text="SAIR DA CONTA"
+                    Clicked="OnSairClicked"
+                    BackgroundColor="#2C2C2C"
+                    TextColor="#FF5252"
+                    FontAttributes="Bold"
+                    FontSize="13"
+                    CornerRadius="10"
+                    HeightRequest="45"
+                    Margin="0,10,0,0"/>
+
+            <Button Text="EXCLUIR CONTA"
+                    Clicked="OnDeletarContaClicked"
+                    BackgroundColor="#2C2C2C"
+                    TextColor="#FF5252"
+                    FontAttributes="Bold"
+                    FontSize="13"
+                    CornerRadius="10"
+                    HeightRequest="45"
+                    Margin="0,0,0,20"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

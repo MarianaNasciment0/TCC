@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.GerenciarPlanosPage"
+             Title="Gerenciar Planos"
+             BackgroundColor="#121212">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Button Text="Adicionar Novo Plano"
+                Clicked="OnAdicionarPlanoClicked"
+                BackgroundColor="#00E676"
+                TextColor="#121212"
+                FontAttributes="Bold"/>
+
+        <CollectionView x:Name="collectionPlanos" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="#1E1E1E" Padding="15" Margin="0,5">
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="{Binding NomePlano}" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding Descricao}" TextColor="#9E9E9E" FontSize="12"/>
+                            <Label Text="{Binding Valor, StringFormat='R$ {0:F2}'}" TextColor="#00E676" FontSize="14"/>
+                            <Button Text="Excluir" 
+                                    Clicked="OnExcluirPlanoClicked" 
+                                    CommandParameter="{Binding}" 
+                                    TextColor="#FF5252" 
+                                    BackgroundColor="Transparent"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

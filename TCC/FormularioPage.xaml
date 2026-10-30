@@ -7,7 +7,6 @@
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="20">
 
-            <!-- Cabeçalho Dinâmico -->
             <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
                 <BoxView WidthRequest="4" HeightRequest="32" Color="#00E676" CornerRadius="2"/>
                 <VerticalStackLayout>
@@ -16,7 +15,6 @@
                 </VerticalStackLayout>
             </HorizontalStackLayout>
 
-            <!-- Seletor de Ação (Login ou Cadastro) -->
             <Border BackgroundColor="#1E1E1E" StrokeThickness="0" StrokeShape="RoundRectangle 12">
                 <Picker x:Name="pickerAcao"
                         Title="Selecione a Ação"
@@ -33,7 +31,7 @@
                 </Picker>
             </Border>
 
-            <!-- ================= LOGIN ================= -->
+            <!-- LOGIN -->
             <VerticalStackLayout x:Name="layoutLogin" Spacing="15" IsVisible="True">
                 <Label Text="Informe suas credenciais para entrar." TextColor="#B0BEC5" FontSize="13"/>
 
@@ -52,28 +50,96 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
 
-
-            <!-- ================= CADASTRO: ALUNO ================= -->
+            <!-- CADASTRO: ALUNO -->
             <VerticalStackLayout x:Name="layoutCadastroAluno" Spacing="15" IsVisible="False">
-                <Label Text="Preencha os dados do Aluno." TextColor="#B0BEC5" FontSize="13"/>
+                <Label Text="Preencha os dados do Aluno / Atleta." TextColor="#B0BEC5" FontSize="13"/>
+
                 <VerticalStackLayout Spacing="6">
                     <Label Text="NOME COMPLETO" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
                     <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
-                        <Entry x:Name="txtNomeAluno" Placeholder="Nome" PlaceholderColor="#616161" TextColor="White" Margin="10,2"/>
+                        <Entry x:Name="txtNomeAluno" Placeholder="Nome completo" PlaceholderColor="#616161" TextColor="White" Margin="10,2"/>
                     </Border>
                 </VerticalStackLayout>
+
                 <VerticalStackLayout Spacing="6">
                     <Label Text="CPF" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
                     <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
                         <Entry x:Name="txtCpfAluno" Placeholder="000.000.000-00" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" Margin="10,2"/>
                     </Border>
                 </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="TELEFONE" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                        <Entry x:Name="txtTelefoneAluno" Placeholder="(11) 99999-9999" PlaceholderColor="#616161" TextColor="White" Keyboard="Telephone" Margin="10,2"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <Grid ColumnDefinitions="*,110" ColumnSpacing="10">
+                    <VerticalStackLayout Grid.Column="0" Spacing="6">
+                        <Label Text="RUA" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                        <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                            <Entry x:Name="txtRuaAluno" Placeholder="Nome da rua" PlaceholderColor="#616161" TextColor="White" Margin="10,2"/>
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="1" Spacing="6">
+                        <Label Text="NÚMERO" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                        <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                            <Entry x:Name="txtNumeroAluno" Placeholder="Nº" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" Margin="10,2"/>
+                        </Border>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="DATA DE NASCIMENTO" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                        <DatePicker x:Name="dateNascAluno" TextColor="White" BackgroundColor="Transparent" Margin="10,2"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <VerticalStackLayout Grid.Column="0" Spacing="6">
+                        <Label Text="ALTURA (m)" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                        <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                            <Entry x:Name="txtAlturaAluno" Placeholder="Ex: 1.75" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" Margin="10,2"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1" Spacing="6">
+                        <Label Text="PESO (kg)" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                        <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                            <Entry x:Name="txtPesoAluno" Placeholder="Ex: 70.5" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" Margin="10,2"/>
+                        </Border>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="OBJETIVO PRINCIPAL" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                        <Picker x:Name="pickerObjetivoAluno"
+                                Title="Selecione seu objetivo"
+                                TitleColor="#616161"
+                                TextColor="White"
+                                BackgroundColor="Transparent"
+                                Margin="10,2">
+                            <Picker.Items>
+                                <x:String>Emagrecimento</x:String>
+                                <x:String>Ganho de Massa Muscular</x:String>
+                                <x:String>Condicionamento Físico</x:String>
+                                <x:String>Saúde e Bem-Estar</x:String>
+                                <x:String>Performance Esportiva</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </Border>
+                </VerticalStackLayout>
+
                 <VerticalStackLayout Spacing="6">
                     <Label Text="E-MAIL" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
                     <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
                         <Entry x:Name="txtEmailAluno" Placeholder="email@aluno.com" PlaceholderColor="#616161" TextColor="White" Keyboard="Email" Margin="10,2"/>
                     </Border>
                 </VerticalStackLayout>
+
                 <VerticalStackLayout Spacing="6">
                     <Label Text="SENHA" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
                     <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
@@ -82,8 +148,7 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
 
-
-            <!-- ================= CADASTRO: PERSONAL ================= -->
+            <!-- CADASTRO: PERSONAL -->
             <VerticalStackLayout x:Name="layoutCadastroPersonal" Spacing="15" IsVisible="False">
                 <Label Text="Preencha os dados do Personal Trainer." TextColor="#B0BEC5" FontSize="13"/>
                 <VerticalStackLayout Spacing="6">
@@ -93,15 +158,33 @@
                     </Border>
                 </VerticalStackLayout>
                 <VerticalStackLayout Spacing="6">
+                    <Label Text="CPF" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                        <Entry x:Name="txtCpfPersonal" Placeholder="000.000.000-00" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" Margin="10,2"/>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="6">
                     <Label Text="CREF" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
                     <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
                         <Entry x:Name="txtCrefPersonal" Placeholder="CREF" PlaceholderColor="#616161" TextColor="White" Margin="10,2"/>
                     </Border>
                 </VerticalStackLayout>
                 <VerticalStackLayout Spacing="6">
+                    <Label Text="TELEFONE" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                        <Entry x:Name="txtTelefonePersonal" Placeholder="(11) 99999-9999" PlaceholderColor="#616161" TextColor="White" Keyboard="Telephone" Margin="10,2"/>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="DATA DE NASCIMENTO" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                        <DatePicker x:Name="dateNascPersonal" TextColor="White" BackgroundColor="Transparent" Margin="10,2"/>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="6">
                     <Label Text="ESPECIALIDADES" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
                     <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
-                        <Entry x:Name="txtEspecialidadesPersonal" Placeholder="Ex: Musculação" PlaceholderColor="#616161" TextColor="White" Margin="10,2"/>
+                        <Entry x:Name="txtEspecialidadesPersonal" Placeholder="Ex: Emagrecimento, Hipertrofia" PlaceholderColor="#616161" TextColor="White" Margin="10,2"/>
                     </Border>
                 </VerticalStackLayout>
                 <VerticalStackLayout Spacing="6">
@@ -118,8 +201,7 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
 
-
-            <!-- ================= CADASTRO: NUTRICIONISTA ================= -->
+            <!-- CADASTRO: NUTRICIONISTA -->
             <VerticalStackLayout x:Name="layoutCadastroNutri" Spacing="15" IsVisible="False">
                 <Label Text="Preencha os dados da Nutricionista." TextColor="#B0BEC5" FontSize="13"/>
                 <VerticalStackLayout Spacing="6">
@@ -129,15 +211,33 @@
                     </Border>
                 </VerticalStackLayout>
                 <VerticalStackLayout Spacing="6">
+                    <Label Text="CPF" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                        <Entry x:Name="txtCpfNutri" Placeholder="000.000.000-00" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" Margin="10,2"/>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="6">
                     <Label Text="CRN" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
                     <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
                         <Entry x:Name="txtCrnNutri" Placeholder="CRN" PlaceholderColor="#616161" TextColor="White" Margin="10,2"/>
                     </Border>
                 </VerticalStackLayout>
                 <VerticalStackLayout Spacing="6">
+                    <Label Text="TELEFONE" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                        <Entry x:Name="txtTelefoneNutri" Placeholder="(11) 99999-9999" PlaceholderColor="#616161" TextColor="White" Keyboard="Telephone" Margin="10,2"/>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="DATA DE NASCIMENTO" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                        <DatePicker x:Name="dateNascNutri" TextColor="White" BackgroundColor="Transparent" Margin="10,2"/>
+                    </Border>
+                </VerticalStackLayout>
+                <VerticalStackLayout Spacing="6">
                     <Label Text="ÁREA DE ATUAÇÃO" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
                     <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
-                        <Entry x:Name="txtEspecialidadesNutri" Placeholder="Ex: Esportiva" PlaceholderColor="#616161" TextColor="White" Margin="10,2"/>
+                        <Entry x:Name="txtEspecialidadesNutri" Placeholder="Ex: Esportiva, Emagrecimento" PlaceholderColor="#616161" TextColor="White" Margin="10,2"/>
                     </Border>
                 </VerticalStackLayout>
                 <VerticalStackLayout Spacing="6">
@@ -154,8 +254,7 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
 
-
-            <!-- ================= CADASTRO: ACADEMIA ================= -->
+            <!-- CADASTRO: ACADEMIA -->
             <VerticalStackLayout x:Name="layoutCadastroAcademia" Spacing="15" IsVisible="False">
                 <Label Text="Preencha os dados da Academia." TextColor="#B0BEC5" FontSize="13"/>
                 <VerticalStackLayout Spacing="6">
@@ -171,6 +270,26 @@
                     </Border>
                 </VerticalStackLayout>
                 <VerticalStackLayout Spacing="6">
+                    <Label Text="TELEFONE" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                        <Entry x:Name="txtTelefoneEmpresa" Placeholder="(11) 99999-9999" PlaceholderColor="#616161" TextColor="White" Keyboard="Telephone" Margin="10,2"/>
+                    </Border>
+                </VerticalStackLayout>
+                <Grid ColumnDefinitions="*,110" ColumnSpacing="10">
+                    <VerticalStackLayout Grid.Column="0" Spacing="6">
+                        <Label Text="RUA" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                        <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                            <Entry x:Name="txtRuaEmpresa" Placeholder="Endereço" PlaceholderColor="#616161" TextColor="White" Margin="10,2"/>
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="1" Spacing="6">
+                        <Label Text="NÚMERO" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                        <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
+                            <Entry x:Name="txtNumeroEmpresa" Placeholder="Nº" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" Margin="10,2"/>
+                        </Border>
+                    </VerticalStackLayout>
+                </Grid>
+                <VerticalStackLayout Spacing="6">
                     <Label Text="E-MAIL" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
                     <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 10">
                         <Entry x:Name="txtEmailEmpresa" Placeholder="email@academia.com" PlaceholderColor="#616161" TextColor="White" Keyboard="Email" Margin="10,2"/>
@@ -184,8 +303,7 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
 
-
-            <!-- ================= CADASTRO: ADMINISTRADOR ================= -->
+            <!-- CADASTRO: ADMINISTRADOR -->
             <VerticalStackLayout x:Name="layoutCadastroAdmin" Spacing="15" IsVisible="False">
                 <Label Text="Preencha os dados do Administrador." TextColor="#B0BEC5" FontSize="13"/>
                 <VerticalStackLayout Spacing="6">
@@ -214,12 +332,11 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
 
-            <!-- Botão de Ação -->
             <Button Text="CONFIRMAR"
                     Clicked="OnSalvarClicked"
                     BackgroundColor="#00E676"
                     TextColor="#121212"
-                    FontAttributes="Bold"
+                    FontAttributes="Bold" 
                     FontSize="15"
                     CornerRadius="12"
                     HeightRequest="52"

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.ListaConversasPage"
+             Title="Mensagens / Chat"
+             BackgroundColor="#121212">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label Text="Minhas Conversas" TextColor="#00E676" FontSize="16" FontAttributes="Bold"/>
+
+        <CollectionView x:Name="collectionContatos" SelectionMode="Single" SelectionChanged="OnContatoSelecionado">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15" Margin="0,5">
+                        <Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+
+                            <!-- Dados do Contato -->
+                            <VerticalStackLayout Grid.Column="0" Spacing="3" VerticalOptions="Center">
+                                <Label Text="{Binding Nome}" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                                <Label Text="{Binding TipoPerfil, StringFormat='Perfil: {0}'}" TextColor="#9E9E9E" FontSize="12"/>
+                            </VerticalStackLayout>
+
+                            <!-- 🔴 Bolinha indicadora de nova mensagem (Visível apenas se TemMensagemNaoLida for true) -->
+                            <BoxView Grid.Column="1" 
+                                     BackgroundColor="#00E676" 
+                                     WidthRequest="12" 
+                                     HeightRequest="12" 
+                                     CornerRadius="6" 
+                                     VerticalOptions="Center" 
+                                     IsVisible="{Binding TemMensagemNaoLida}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label x:Name="lblNenhumContato" 
+               Text="Nenhuma conversa ativa no momento." 
+               TextColor="#9E9E9E" 
+               HorizontalOptions="Center" 
+               VerticalOptions="CenterAndExpand" 
+               IsVisible="False"/>
+
+    </VerticalStackLayout>
+</ContentPage>

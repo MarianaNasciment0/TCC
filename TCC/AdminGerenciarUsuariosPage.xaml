@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.AdminGerenciarUsuariosPage"
+             Title="Gerenciamento de Contas"
+             BackgroundColor="#121212">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label x:Name="lblTituloSecao" Text="Usuários do Sistema" TextColor="#00E676" FontSize="18" FontAttributes="Bold"/>
+
+        <CollectionView x:Name="collectionUsuarios" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15" Margin="0,5">
+                        <VerticalStackLayout Spacing="10">
+
+                            <!-- Dados completos do usuário para o Admin -->
+                            <VerticalStackLayout Spacing="3">
+                                <Label Text="{Binding Nome}" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                                <Label Text="{Binding Email, StringFormat='E-mail: {0}'}" TextColor="#9E9E9E" FontSize="12"/>
+                                <Label Text="{Binding TipoPerfil, StringFormat='Perfil: {0}'}" TextColor="#00E676" FontSize="12"/>
+                                <Label Text="{Binding Telefone, StringFormat='Tel: {0}'}" TextColor="#9E9E9E" FontSize="12"/>
+                                <Label Text="{Binding Documento, StringFormat='Documento/CPF: {0}'}" TextColor="#9E9E9E" FontSize="12"/>
+                            </VerticalStackLayout>
+
+                            <!-- Botões de Ação do Admin: Bloquear, Chat e Excluir Conta do Usuário -->
+                            <VerticalStackLayout Spacing="8">
+                                <Button Text="Bloquear / Desbloquear Acesso" 
+                                        Clicked="OnBloquearClicked" 
+                                        CommandParameter="{Binding}"
+                                        BackgroundColor="#2C2C2C" 
+                                        TextColor="White" 
+                                        FontSize="12" 
+                                        CornerRadius="8"
+                                        HeightRequest="38"
+                                        HorizontalOptions="Fill"/>
+
+                                <Button Text="💬 Iniciar Chat" 
+                                        Clicked="OnChatClicked" 
+                                        CommandParameter="{Binding}"
+                                        BackgroundColor="#00E676" 
+                                        TextColor="Black" 
+                                        FontSize="12" 
+                                        FontAttributes="Bold" 
+                                        CornerRadius="8"
+                                        HeightRequest="38"
+                                        HorizontalOptions="Fill"/>
+
+                                <Button Text="🗑️ Excluir esta Conta" 
+                                        Clicked="OnExcluirUsuarioClicked" 
+                                        CommandParameter="{Binding}"
+                                        BackgroundColor="#3A1212" 
+                                        TextColor="#FF5252" 
+                                        FontSize="12" 
+                                        FontAttributes="Bold" 
+                                        CornerRadius="8"
+                                        HeightRequest="38"
+                                        HorizontalOptions="Fill"/>
+                            </VerticalStackLayout>
+
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label x:Name="lblNenhum" 
+               Text="Nenhum usuário encontrado." 
+               TextColor="#9E9E9E" 
+               HorizontalOptions="Center" 
+               VerticalOptions="CenterAndExpand" 
+               IsVisible="False"/>
+
+    </VerticalStackLayout>
+</ContentPage>

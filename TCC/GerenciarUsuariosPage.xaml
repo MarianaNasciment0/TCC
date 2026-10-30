@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.GerenciarUsuariosPage"
+             Title="Gerenciamento de Usuários"
+             BackgroundColor="#121212">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label Text="PAINEL DO ADMINISTRADOR" TextColor="#00E676" FontSize="12" FontAttributes="Bold"/>
+        <Label Text="Controle Total de Contas e Cadastros" TextColor="White" FontSize="18" FontAttributes="Bold"/>
+
+        <CollectionView x:Name="collectionUsuarios" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15" Margin="0,6">
+                        <VerticalStackLayout Spacing="12">
+
+                            <!-- Dados Completos do Usuário -->
+                            <VerticalStackLayout Spacing="3">
+                                <HorizontalStackLayout Spacing="10">
+                                    <Label Text="{Binding Nome}" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                                    <Label Text="{Binding TipoPerfil, StringFormat='[{0}]'}" TextColor="#00E676" FontSize="13" FontAttributes="Bold" VerticalOptions="Center"/>
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding Email, StringFormat='E-mail: {0}'}" TextColor="#9E9E9E" FontSize="12"/>
+                                <Label Text="{Binding Telefone, StringFormat='Tel: {0}'}" TextColor="#9E9E9E" FontSize="12"/>
+                                <Label Text="{Binding Documento, StringFormat='CPF/Doc: {0}'}" TextColor="#9E9E9E" FontSize="12"/>
+                            </VerticalStackLayout>
+
+                            <!-- Ações do Administrador (Bloquear, Chat e Excluir Conta do Usuário) -->
+                            <VerticalStackLayout Spacing="8">
+                                <Grid ColumnDefinitions="*, *" ColumnSpacing="8">
+                                    <Button Grid.Column="0" 
+                                            Text="Bloquear / Desbloquear" 
+                                            Clicked="OnBloquearClicked" 
+                                            CommandParameter="{Binding}"
+                                            BackgroundColor="#2C2C2C" 
+                                            TextColor="White" 
+                                            FontSize="11" 
+                                            CornerRadius="8"
+                                            HeightRequest="38"/>
+
+                                    <Button Grid.Column="1" 
+                                            Text="💬 Iniciar Chat" 
+                                            Clicked="OnChatClicked" 
+                                            CommandParameter="{Binding}"
+                                            BackgroundColor="#00E676" 
+                                            TextColor="Black" 
+                                            FontSize="11" 
+                                            FontAttributes="Bold" 
+                                            CornerRadius="8"
+                                            HeightRequest="38"/>
+                                </Grid>
+
+                                <Button Text="🗑️ Excluir Esta Conta" 
+                                        Clicked="OnExcluirUsuarioClicked" 
+                                        CommandParameter="{Binding}"
+                                        BackgroundColor="#3A1212" 
+                                        TextColor="#FF5252" 
+                                        FontSize="11" 
+                                        FontAttributes="Bold" 
+                                        CornerRadius="8"
+                                        HeightRequest="38"
+                                        HorizontalOptions="Fill"/>
+                            </VerticalStackLayout>
+
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label x:Name="lblNenhumUsuario" 
+               Text="Nenhum usuário cadastrado no sistema." 
+               TextColor="#9E9E9E" 
+               HorizontalOptions="Center" 
+               VerticalOptions="CenterAndExpand" 
+               IsVisible="False"/>
+
+    </VerticalStackLayout>
+</ContentPage>

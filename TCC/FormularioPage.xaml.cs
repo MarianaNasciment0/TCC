@@ -13,7 +13,7 @@ public partial class FormularioPage : ContentPage
         InitializeComponent();
         _perfilSelecionado = perfil ?? "Aluno / Atleta";
         lblTituloPerfil.Text = $"Perfil: {_perfilSelecionado}";
-        pickerAcao.SelectedIndex = 0; // Inicia em Login
+        pickerAcao.SelectedIndex = 0;
 
         string dbPath = Path.Combine(FileSystem.AppDataDirectory, "tcc_database.db3");
         _dbHelper = new SQLiteDatabaseHelper(dbPath);
@@ -46,19 +46,18 @@ public partial class FormularioPage : ContentPage
     {
         if (sender is Button button)
         {
-            await button.ScaleToAsync(0.95, 50);
-            await button.ScaleToAsync(1, 50);
+            await button.ScaleTo(0.95, 50);
+            await button.ScaleTo(1, 50);
         }
 
         if (pickerAcao.SelectedIndex == 0)
         {
-            // === LOGIN ===
             string emailLogin = txtEmail?.Text?.Trim() ?? string.Empty;
             string senhaLogin = txtSenha?.Text ?? string.Empty;
 
             if (string.IsNullOrWhiteSpace(emailLogin) || string.IsNullOrWhiteSpace(senhaLogin))
             {
-                await DisplayAlertAsync("Atenção", "Preencha o e-mail e a senha para entrar.", "OK");
+                await DisplayAlert("Atenção", "Preencha o e-mail e a senha para entrar.", "OK");
                 return;
             }
 
@@ -66,67 +65,127 @@ public partial class FormularioPage : ContentPage
 
             if (usuarioEncontrado == null || usuarioEncontrado.Senha != senhaLogin)
             {
-                await DisplayAlertAsync("Acesso Negado", "E-mail ou senha incorretos, ou nenhum cadastro encontrado.", "OK");
+                await DisplayAlert("Acesso Negado", "E-mail ou senha incorretos, ou nenhum cadastro encontrado.", "OK");
                 return;
             }
 
-            await DisplayAlertAsync("Sucesso", $"Bem-vindo de volta, {usuarioEncontrado.Nome}!", "OK");
-            await Navigation.PopAsync();
+            if (usuarioEncontrado.IsBloqueado)
+            {
+                string motivo = string.IsNullOrWhiteSpace(usuarioEncontrado.MotivoBloqueio)
+                    ? "Violação dos termos de uso da plataforma."
+                    : usuarioEncontrado.MotivoBloqueio;
+
+                await DisplayAlert("CONTA BLOQUEADA 🚫", $"A sua conta foi bloqueada pelo Administrador.\n\nMotivo: {motivo}\n\nEntre em contato com o suporte para mais informações.", "OK");
+                return;
+            }
+
+            await DisplayAlert("Sucesso", $"Bem-vindo de volta, {usuarioEncontrado.Nome}!", "OK");
+
+            string tipo = usuarioEncontrado.TipoPerfil.ToLower();
+
+            if (tipo.Contains("aluno"))
+            {
+                await Navigation.PushAsync(new Alunodashboardpage(usuarioEncontrado));
+            }
+            else if (tipo.Contains("personal"))
+            {
+                await Navigation.PushAsync(new PersonalDashboardPage(usuarioEncontrado));
+            }
+            else if (tipo.Contains("nutricionista"))
+            {
+                await Navigation.PushAsync(new NutricionistaDashboardPage(usuarioEncontrado));
+            }
+            else if (tipo.Contains("administrador") || tipo.Contains("admin"))
+            {
+                await Navigation.PushAsync(new AdminDashboardPage(usuarioEncontrado));
+            }
+            else if (tipo.Contains("academia"))
+            {
+                await Navigation.PushAsync(new AcademiaDashboardPage(usuarioEncontrado));
+            }
+            else
+            {
+                // Correção: Passa objetos UsuarioModel e nunca strings soltas
+                await Navigation.PushAsync(new ProfissionaisPage(usuarioEncontrado, usuarioEncontrado));
+            }
+
+            Navigation.RemovePage(this);
         }
         else
         {
-            // === CADASTRO ===
             string perfil = _perfilSelecionado?.Trim().ToLower() ?? "";
             string nome = string.Empty;
             string email = string.Empty;
             string senha = string.Empty;
             string documento = string.Empty;
             string especialidade = string.Empty;
+            string objetivo = string.Empty;
+            string telefone = string.Empty;
+            string rua = string.Empty;
+            string numero = string.Empty;
+            DateTime nascimento = DateTime.Now;
+            double altura = 0;
+            double peso = 0;
 
             if (perfil.Contains("aluno"))
             {
                 nome = txtNomeAluno?.Text?.Trim() ?? string.Empty;
                 string cpf = txtCpfAluno?.Text?.Trim() ?? string.Empty;
+                telefone = txtTelefoneAluno?.Text?.Trim() ?? string.Empty;
+                rua = txtRuaAluno?.Text?.Trim() ?? string.Empty;
+                numero = txtNumeroAluno?.Text?.Trim() ?? string.Empty;
+                nascimento = dateNascAluno?.Date ?? DateTime.Now;
+
                 email = txtEmailAluno?.Text?.Trim() ?? string.Empty;
                 senha = txtSenhaAluno?.Text ?? string.Empty;
                 documento = cpf;
 
+                double.TryParse(txtAlturaAluno?.Text?.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out altura);
+                double.TryParse(txtPesoAluno?.Text?.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out peso);
+                objetivo = pickerObjetivoAluno?.SelectedItem?.ToString() ?? string.Empty;
+
                 if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(cpf) ||
                     string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
                 {
-                    await DisplayAlertAsync("Atenção", "Preencha todos os campos obrigatórios do Aluno.", "OK");
+                    await DisplayAlert("Atenção", "Preencha todos os campos obrigatórios do Aluno.", "OK");
                     return;
                 }
             }
             else if (perfil.Contains("personal"))
             {
                 nome = txtNomePersonal?.Text?.Trim() ?? string.Empty;
+                string cpf = txtCpfPersonal?.Text?.Trim() ?? string.Empty;
                 string cref = txtCrefPersonal?.Text?.Trim() ?? string.Empty;
+                telefone = txtTelefonePersonal?.Text?.Trim() ?? string.Empty;
+                nascimento = dateNascPersonal?.Date ?? DateTime.Now;
                 email = txtEmailPersonal?.Text?.Trim() ?? string.Empty;
                 senha = txtSenhaPersonal?.Text ?? string.Empty;
-                documento = cref;
+                documento = $"CPF: {cpf} | CREF: {cref}";
                 especialidade = txtEspecialidadesPersonal?.Text?.Trim() ?? string.Empty;
 
                 if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(cref) ||
                     string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
                 {
-                    await DisplayAlertAsync("Atenção", "Preencha todos os campos obrigatórios do Personal.", "OK");
+                    await DisplayAlert("Atenção", "Preencha todos os campos obrigatórios do Personal.", "OK");
                     return;
                 }
             }
             else if (perfil.Contains("nutricionista"))
             {
                 nome = txtNomeNutri?.Text?.Trim() ?? string.Empty;
+                string cpf = txtCpfNutri?.Text?.Trim() ?? string.Empty;
                 string crn = txtCrnNutri?.Text?.Trim() ?? string.Empty;
+                telefone = txtTelefoneNutri?.Text?.Trim() ?? string.Empty;
+                nascimento = dateNascNutri?.Date ?? DateTime.Now;
                 email = txtEmailNutri?.Text?.Trim() ?? string.Empty;
                 senha = txtSenhaNutri?.Text ?? string.Empty;
-                documento = crn;
+                documento = $"CPF: {cpf} | CRN: {crn}";
                 especialidade = txtEspecialidadesNutri?.Text?.Trim() ?? string.Empty;
 
                 if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(crn) ||
                     string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
                 {
-                    await DisplayAlertAsync("Atenção", "Preencha todos os campos obrigatórios da Nutricionista.", "OK");
+                    await DisplayAlert("Atenção", "Preencha todos os campos obrigatórios da Nutricionista.", "OK");
                     return;
                 }
             }
@@ -134,6 +193,9 @@ public partial class FormularioPage : ContentPage
             {
                 nome = txtNomeEmpresa?.Text?.Trim() ?? string.Empty;
                 string cnpj = txtCnpjEmpresa?.Text?.Trim() ?? string.Empty;
+                telefone = txtTelefoneEmpresa?.Text?.Trim() ?? string.Empty;
+                rua = txtRuaEmpresa?.Text?.Trim() ?? string.Empty;
+                numero = txtNumeroEmpresa?.Text?.Trim() ?? string.Empty;
                 email = txtEmailEmpresa?.Text?.Trim() ?? string.Empty;
                 senha = txtSenhaEmpresa?.Text ?? string.Empty;
                 documento = cnpj;
@@ -141,7 +203,7 @@ public partial class FormularioPage : ContentPage
                 if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(cnpj) ||
                     string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
                 {
-                    await DisplayAlertAsync("Atenção", "Preencha todos os campos obrigatórios da Academia.", "OK");
+                    await DisplayAlert("Atenção", "Preencha todos os campos obrigatórios da Academia.", "OK");
                     return;
                 }
             }
@@ -156,30 +218,21 @@ public partial class FormularioPage : ContentPage
                 if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(docAdmin) ||
                     string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
                 {
-                    await DisplayAlertAsync("Atenção", "Preencha todos os campos obrigatórios do Administrador.", "OK");
+                    await DisplayAlert("Atenção", "Preencha todos os campos obrigatórios do Administrador.", "OK");
                     return;
                 }
             }
 
-            // 1. Verifica se o e-mail já existe
             var emailExistente = await _dbHelper.ObterPorEmailAsync(email);
             if (emailExistente != null)
             {
-                await DisplayAlertAsync("Atenção", "Este e-mail já está cadastrado no sistema.", "OK");
+                await DisplayAlert("Atenção", "Este e-mail já está cadastrado no sistema.", "OK");
                 return;
             }
 
-            // 2. Verifica se o documento já existe
-            var todosUsuarios = await _dbHelper.ListarUsuariosAsync();
-            bool documentoExiste = todosUsuarios.Any(u => !string.IsNullOrEmpty(u.Documento) && u.Documento.Trim().Equals(documento, StringComparison.OrdinalIgnoreCase));
+            int idadeCalculada = DateTime.Now.Year - nascimento.Year;
+            if (nascimento.Date > DateTime.Now.AddYears(-idadeCalculada)) idadeCalculada--;
 
-            if (documentoExiste)
-            {
-                await DisplayAlertAsync("Atenção", "Este número de registro já se encontra cadastrado no sistema.", "OK");
-                return;
-            }
-
-            // Salva no Banco de Dados SQLite
             var novoUsuario = new UsuarioModel
             {
                 Nome = nome,
@@ -187,14 +240,22 @@ public partial class FormularioPage : ContentPage
                 Senha = senha,
                 TipoPerfil = _perfilSelecionado,
                 Documento = documento,
-                Especialidades = especialidade
+                Especialidades = especialidade,
+                Objetivo = objetivo,
+                Altura = altura,
+                Peso = peso,
+                Telefone = telefone,
+                Rua = rua,
+                Numero = numero,
+                DataNascimento = nascimento,
+                Idade = idadeCalculada
             };
 
             await _dbHelper.InserirUsuarioAsync(novoUsuario);
 
-            await DisplayAlertAsync("Sucesso", $"Cadastro de {_perfilSelecionado} realizado com sucesso!", "OK");
+            await DisplayAlert("Sucesso", $"Cadastro de {_perfilSelecionado} realizado com sucesso!", "OK");
 
-            pickerAcao.SelectedIndex = 0; // Volta para a tela de login
+            pickerAcao.SelectedIndex = 0;
         }
     }
 }

@@ -8,13 +8,12 @@
     <ScrollView>
         <VerticalStackLayout Padding="24" Spacing="20">
 
-            <!-- Cabeçalho -->
             <VerticalStackLayout Spacing="4" Margin="0,10,0,10">
                 <Label Text="CENTRAL DE ACESSO" TextColor="#00E676" FontSize="12" FontAttributes="Bold" CharacterSpacing="1"/>
                 <Label Text="Escolha seu perfil para continuar" TextColor="White" FontSize="22" FontAttributes="Bold"/>
             </VerticalStackLayout>
 
-            <!-- Botão 1: Aluno / Atleta -->
+            <!-- Aluno / Atleta -->
             <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnAlunoClicked"/>
@@ -28,7 +27,7 @@
                 </HorizontalStackLayout>
             </Border>
 
-            <!-- Botão 2: Personal Trainer -->
+            <!-- Personal Trainer -->
             <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnPersonalClicked"/>
@@ -42,7 +41,7 @@
                 </HorizontalStackLayout>
             </Border>
 
-            <!-- Botão 3: Nutricionista -->
+            <!-- Nutricionista -->
             <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnNutricionistaClicked"/>
@@ -56,7 +55,7 @@
                 </HorizontalStackLayout>
             </Border>
 
-            <!-- Botão 4: Academia -->
+            <!-- Academia -->
             <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnAcademiaClicked"/>
@@ -70,7 +69,7 @@
                 </HorizontalStackLayout>
             </Border>
 
-            <!-- Botão 5: Administrador -->
+            <!-- Administrador -->
             <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 14" Padding="18">
                 <Border.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnAdminClicked"/>
@@ -79,7 +78,7 @@
                     <Label Text="🛠️" FontSize="28" VerticalOptions="Center"/>
                     <VerticalStackLayout VerticalOptions="Center">
                         <Label Text="Administrador" TextColor="White" FontSize="16" FontAttributes="Bold"/>
-                        <Label Text="Acesso geral ao sistema e controles" TextColor="#9E9E9E" FontSize="12"/>
+                        <Label Text="Gestão de cadastros e configurações do sistema" TextColor="#9E9E9E" FontSize="12"/>
                     </VerticalStackLayout>
                 </HorizontalStackLayout>
             </Border>

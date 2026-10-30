@@ -1,16 +1,13 @@
-﻿using SQLite;
+﻿    using SQLite;
 
-namespace TCC.Models
-{
-    public class Produto
+    namespace TCC.Models
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
-
-        public string Descricao { get; set; } = string.Empty;
-
-        public int Quantidade { get; set; }
-
-        public double Preco { get; set; }
+        public class Produto
+        {
+            [PrimaryKey, AutoIncrement]
+            public int Id { get; set; }
+            public string Descricao { get; set; } = string.Empty;
+            public int Quantidade { get; set; }
+            public double Preco { get; set; }
+        }
     }
-}

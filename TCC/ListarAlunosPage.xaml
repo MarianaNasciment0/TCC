@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.ListarAlunosPage"
+             Title="Lista de Alunos"
+             BackgroundColor="#121212">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <VerticalStackLayout Spacing="4">
+            <Label Text="CONSULTA DE ALUNOS" TextColor="#00E676" FontSize="11" FontAttributes="Bold" CharacterSpacing="1"/>
+            <Label Text="Alunos Cadastrados" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+        </VerticalStackLayout>
+
+        <CollectionView x:Name="collectionAlunos" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15" Margin="0,5">
+                        <VerticalStackLayout Spacing="8">
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="🎓" FontSize="20" VerticalOptions="Center"/>
+                                <Label Text="{Binding Nome}" TextColor="White" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+
+                            <Grid ColumnDefinitions="*,*">
+                                <Label Grid.Column="0" Text="{Binding Idade, StringFormat='Idade: {0} anos'}" TextColor="#B0BEC5" FontSize="12"/>
+                                <Label Grid.Column="1" Text="{Binding Telefone, StringFormat='Tel: {0}'}" TextColor="#00E676" FontSize="12" FontAttributes="Bold"/>
+                            </Grid>
+
+                            <Label Text="{Binding Email, StringFormat='E-mail: {0}'}" TextColor="#9E9E9E" FontSize="12"/>
+
+                            <Border BackgroundColor="#2A2A2A" Padding="8" StrokeShape="RoundRectangle 6" StrokeThickness="0">
+                                <Grid ColumnDefinitions="*,*,*">
+                                    <Label Grid.Column="0" Text="{Binding Objetivo, StringFormat='Objetivo: {0}'}" TextColor="#00E676" FontSize="11" FontAttributes="Bold"/>
+                                    <Label Grid.Column="1" Text="{Binding Altura, StringFormat='Alt: {0:F2}m'}" TextColor="White" FontSize="11"/>
+                                    <Label Grid.Column="2" Text="{Binding Peso, StringFormat='Peso: {0:F1}kg'}" TextColor="White" FontSize="11"/>
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label x:Name="lblNenhumAluno" 
+               Text="Nenhum aluno cadastrado até o momento." 
+               TextColor="#616161" 
+               HorizontalTextAlignment="Center" 
+               IsVisible="False" 
+               Margin="0,30,0,0"/>
+
+    </VerticalStackLayout>
+</ContentPage>

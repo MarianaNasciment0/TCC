@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.EditarPlanoNutriPage"
+             Title="Configurar Consultoria"
+             BackgroundColor="#121212">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <VerticalStackLayout Spacing="4">
+                <Label Text="PAINEL DA NUTRICIONISTA" TextColor="#00E676" FontSize="11" FontAttributes="Bold" CharacterSpacing="1"/>
+                <Label Text="Atendimento, Valores e Endereço" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+            </VerticalStackLayout>
+
+            <!-- Valor da Consulta -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="💰 Preço da Consulta (R$)" TextColor="#00E676" FontSize="14" FontAttributes="Bold"/>
+                    <Label Text="Informe o valor cobrado por consulta ou acompanhamento:" TextColor="#9E9E9E" FontSize="12"/>
+                    <Border BackgroundColor="#121212" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 8" Margin="0,5,0,0">
+                        <Entry x:Name="txtValorConsulta"
+                               Placeholder="Ex: 150.00"
+                               PlaceholderColor="#616161"
+                               TextColor="White"
+                               Keyboard="Numeric"
+                               Margin="10,2"/>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Modalidade de Atendimento -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="🏥 Modalidade de Atendimento" TextColor="#00E676" FontSize="14" FontAttributes="Bold"/>
+                    <Label Text="Como você realiza seus atendimentos?" TextColor="#9E9E9E" FontSize="12"/>
+                    
+                    <Border BackgroundColor="#121212" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 8">
+                        <Picker x:Name="pickerModalidade"
+                                Title="Selecione a modalidade"
+                                TextColor="White"
+                                TitleColor="#616161"
+                                BackgroundColor="Transparent"
+                                SelectedIndexChanged="OnModalidadeChanged">
+                            <Picker.Items>
+                                <x:String>Apenas Online</x:String>
+                                <x:String>Apenas Presencial</x:String>
+                                <x:String>Online e Presencial</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Bloco de Endereço (Aparece se for Presencial ou Ambos) -->
+            <Border x:Name="cardEndereco" BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15" IsVisible="False">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="📍 Endereço do Consultório" TextColor="#00E676" FontSize="14" FontAttributes="Bold"/>
+                    
+                    <Grid ColumnDefinitions="*,100" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Column="0" Spacing="4">
+                            <Label Text="Rua / Avenida" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                            <Border BackgroundColor="#121212" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 8">
+                                <Entry x:Name="txtRuaConsultorio" Placeholder="Ex: Av. Paulista" PlaceholderColor="#616161" TextColor="White" Margin="10,2"/>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Número" TextColor="#9E9E9E" FontSize="12" FontAttributes="Bold"/>
+                            <Border BackgroundColor="#121212" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 8">
+                                <Entry x:Name="txtNumeroConsultorio" Placeholder="Nº" PlaceholderColor="#616161" TextColor="White" Keyboard="Numeric" Margin="10,2"/>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Horários e Disponibilidade -->
+            <Border BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 12" Padding="15">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="⏰ Horários e Dias de Atendimento" TextColor="#00E676" FontSize="14" FontAttributes="Bold"/>
+                    <Border BackgroundColor="#121212" Stroke="#2C2C2C" StrokeThickness="1" StrokeShape="RoundRectangle 8" Margin="0,5,0,0">
+                        <Editor x:Name="editorDisponibilidade"
+                                Placeholder="Ex: Segunda a Sexta, das 08:00 às 17:00..."
+                                PlaceholderColor="#616161"
+                                TextColor="White"
+                                HeightRequest="80"
+                                BackgroundColor="Transparent"
+                                Margin="10,5"/>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Botão Salvar -->
+            <Button Text="Salvar Configurações"
+                    Clicked="OnSalvarClicked"
+                    BackgroundColor="#00E676"
+                    TextColor="#121212"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Margin="0,10,0,20"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

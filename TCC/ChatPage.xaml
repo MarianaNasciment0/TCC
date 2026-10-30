@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TCC.ChatPage"
+             BackgroundColor="#121212"
+             NavigationPage.HasNavigationBar="True">
+
+    <Grid RowDefinitions="Auto, *, Auto">
+
+        <!-- Cabeçalho Fixo do Chat -->
+        <Border Grid.Row="0" BackgroundColor="#1E1E1E" Stroke="#2C2C2C" StrokeThickness="1" Padding="15">
+            <HorizontalStackLayout Spacing="12" VerticalOptions="Center">
+                <Label Text="💬" FontSize="22" VerticalOptions="Center"/>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="lblNomeDestinatario" Text="Conversa" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                    <Label x:Name="lblTipoPerfilDestinatario" Text="Chat Direto" TextColor="#00E676" FontSize="11"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </Border>
+
+        <!-- Lista de Mensagens -->
+        <CollectionView x:Name="collectionMensagens" Grid.Row="1" Margin="15" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Margin="0,5">
+                        <Border BackgroundColor="{Binding IsMinhaMensagem, Converter={StaticResource BooleanToColorConverter}}" 
+                                StrokeThickness="0" 
+                                StrokeShape="RoundRectangle 12" 
+                                Padding="12" 
+                                MaximumWidthRequest="280"
+                                HorizontalOptions="{Binding IsMinhaMensagem, Converter={StaticResource BooleanToAlignmentConverter}}">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="{Binding Texto}" TextColor="White" FontSize="14"/>
+                                <Label Text="{Binding DataHora, StringFormat='{0:HH:mm}'}" TextColor="#B0BEC5" FontSize="9" HorizontalOptions="End"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Barra Inferior -->
+        <Grid Grid.Row="2" ColumnDefinitions="*, Auto" BackgroundColor="#1E1E1E" Padding="12" ColumnSpacing="10">
+            <Border Grid.Column="0" BackgroundColor="#2C2C2C" StrokeThickness="0" StrokeShape="RoundRectangle 8" HeightRequest="45" VerticalOptions="Center">
+                <Entry x:Name="txtMensagem" 
+                       Placeholder="Digite sua mensagem..." 
+                       PlaceholderColor="#9E9E9E" 
+                       TextColor="White" 
+                       BackgroundColor="Transparent"
+                       VerticalOptions="Center"
+                       Margin="5,0"/>
+            </Border>
+
+            <Button Grid.Column="1" 
+                    Text="Enviar" 
+                    Clicked="OnEnviarClicked" 
+                    BackgroundColor="#00E676" 
+                    TextColor="Black" 
+                    FontAttributes="Bold" 
+                    FontSize="13" 
+                    CornerRadius="8" 
+                    HeightRequest="45"
+                    VerticalOptions="Center"/>
+        </Grid>
+
+    </Grid>
+</ContentPage>
